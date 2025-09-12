@@ -1,165 +1,201 @@
-# Simulateur Machine Enigma 🔐
+-----
 
-Un simulateur Python de la célèbre machine de chiffrement Enigma utilisée pendant la Seconde Guerre mondiale. Ce projet implémente le mécanisme de double rotation des rotors pour le chiffrement et déchiffrement de messages.
+# Enigma Machine Simulator 🔐
+
+A Python simulator of the famous Enigma cipher machine used during World War II. This project implements the double rotor rotation mechanism for message encryption and decryption.
 
 ## 🎯 Description
 
-La machine Enigma était un dispositif de chiffrement électromécanique utilisé pour sécuriser les communications militaires et diplomatiques. Ce simulateur reproduit le principe de fonctionnement avec :
+The Enigma machine was an electromechanical cipher device used to secure military and diplomatic communications. This simulator replicates its working principle with:
 
-- **Deux rotors** de substitution configurables
-- **Mécanisme de rotation** automatique des rotors
-- **Chiffrement/déchiffrement** bidirectionnel
-- **Gestion des espaces** dans les messages
+  - **Two configurable substitution rotors**
+  - **Automatic rotor rotation mechanism**
+  - **Bidirectional encryption/decryption**
+  - **Space management** in messages
 
-## ✨ Fonctionnalités
+-----
 
-### 🔒 Chiffrement/Déchiffrement
-- **Chiffrement simple** avec rotors statiques
-- **Chiffrement Enigma** avec rotation automatique des rotors
-- **Déchiffrement** pour retrouver le message original
-- **Préservation des espaces** dans le texte
+## ✨ Features
 
-### ⚙️ Mécanisme des Rotors
-- **Double rotation** : rotation du premier rotor à chaque caractère
-- **Rotation cascade** : rotation du second rotor après un tour complet du premier
-- **Configuration personnalisable** des rotors
-- **Génération aléatoire** de nouveaux rotors
+### 🔒 Encryption/Decryption
 
-## 🔧 Comment ça marche
+  - **Simple encryption** with static rotors
+  - **Enigma encryption** with automatic rotor rotation
+  - **Decryption** to recover the original message
+  - **Space preservation** in the text
 
-### Principe de Chiffrement Enigma
+### ⚙️ Rotor Mechanism
 
-1. **Étape 1** : Trouver l'index de la lettre dans l'alphabet
-2. **Étape 2** : Substitution par le premier rotor
-3. **Étape 3** : Trouver l'index de la lettre substituée
-4. **Étape 4** : Substitution par le second rotor
-5. **Étape 5** : Rotation des rotors pour le caractère suivant
+  - **Double rotation**: first rotor rotates with each character
+  - **Cascade rotation**: second rotor rotates after the first completes a full turn
+  - **Customizable rotor configuration**
+  - **Random generation** of new rotors
 
-### Principe de Déchiffrement
+-----
 
-1. **Étape 1** : Trouver la lettre dans le second rotor
-2. **Étape 2** : Récupérer la position dans l'alphabet
-3. **Étape 3** : Trouver cette lettre dans le premier rotor
-4. **Étape 4** : Récupérer la lettre originale dans l'alphabet
+## 🔧 How It Works
 
-### Mécanisme de Rotation
+### Enigma Encryption Principle
+
+1.  **Step 1**: Find the letter's index in the alphabet.
+2.  **Step 2**: Substitute it using the first rotor.
+3.  **Step 3**: Find the index of the substituted letter.
+4.  **Step 4**: Substitute it using the second rotor.
+5.  **Step 5**: Rotate the rotors for the next character.
+
+### Decryption Principle
+
+1.  **Step 1**: Find the letter in the second rotor.
+2.  **Step 2**: Get its position in the alphabet.
+3.  **Step 3**: Find that letter in the first rotor.
+4.  **Step 4**: Get the original letter from the alphabet.
+
+### Rotation Mechanism
 
 ```
-Rotor 1 : Rotation à chaque caractère
-Rotor 2 : Rotation après 26 rotations du Rotor 1
+Rotor 1: Rotates with each character
+Rotor 2: Rotates after 26 rotations of Rotor 1
 ```
 
-## 📖 Utilisation
+-----
 
-### Import du Module
+## 📖 Usage
+
+### Module Import
+
 ```python
 from enigma_simulator import *
 ```
 
-### Fonctions Principales
+### Main Functions
 
-#### 1. Générer des Rotors Aléatoires
+#### 1\. Generate Random Rotors
+
 ```python
 rotor1 = shuffle_alphabet()
 rotor2 = shuffle_alphabet()
 ```
 
-#### 2. Chiffrement Simple (Rotors Statiques)
+#### 2\. Simple Encryption (Static Rotors)
+
 ```python
-code(rotor1, rotor2, "votre message")
+code(rotor1, rotor2, "your message")
 ```
 
-#### 3. Déchiffrement
+#### 3\. Decryption
+
 ```python
-decode(rotor1, rotor2, "message chiffré")
+decode(rotor1, rotor2, "encrypted message")
 ```
 
-#### 4. Chiffrement Enigma (Avec Rotation)
+#### 4\. Enigma Encryption (With Rotation)
+
 ```python
-message_chiffre = code_enigma(rotor1, rotor2, "votre message")
+encrypted_message = code_enigma(rotor1, rotor2, "your message")
 ```
 
-#### 5. Rotation Manuelle des Rotors
+#### 5\. Manual Rotor Rotation
+
 ```python
-nouveau_rotor = rotation(rotor_actuel)
+new_rotor = rotation(current_rotor)
 ```
 
-## 💡 Exemples
+-----
 
-### Exemple Basique
+## 💡 Examples
+
+### Basic Example
+
 ```python
-# Rotors de démonstration
+# Demo rotors
 rotor1 = ['f', 'g', 'r', 'o', 'w', 'd', 'c', 'i', 'y', 't', 'p', 'z', 'u', 'a', 'h', 'm', 'l', 'q', 's', 'j', 'b', 'x', 'k', 'n', 'v', 'e']
 rotor2 = ['u', 'i', 'f', 'e', 'w', 'x', 'z', 't', 'n', 'j', 'q', 'a', 'm', 's', 'h', 'c', 'l', 'o', 'v', 'd', 'b', 'y', 'g', 'k', 'p', 'r']
 
-# Chiffrement
-print("Message original : je suis en classe de nsi")
+# Encryption
+print("Original message: je suis en classe de nsi")
 code(rotor1, rotor2, "je suis en classe de nsi")
-# Sortie : "dg vipv gu orxvvg hg uvp"
+# Output: "dg vipv gu orxvvg hg uvp"
 
-# Déchiffrement
-print("Message chiffré : dg vipv gu orxvvg hg uvp")
+# Decryption
+print("Encrypted message: dg vipv gu orxvvg hg uvp")
 decode(rotor1, rotor2, "dg vipv gu orxvvg hg uvp")
-# Sortie : "je suis en classe de nsi"
+# Output: "je suis en classe de nsi"
 ```
 
-## 🔍 Détails Techniques
+-----
 
-### Gestion des Caractères
-- **Lettres minuscules** : a-z supportées
-- **Espaces** : préservés dans le message
-- **Autres caractères** : non supportés dans cette version
+## 🔍 Technical Details
 
-### Mécanisme de Rotation
-- **Rotation simple** : décalage d'une position vers la droite
-- **Rotation cascade** : le second rotor tourne après 26 rotations du premier
-- **État des rotors** : modifié pendant le chiffrement Enigma
+### Character Handling
+
+  - **Lowercase letters**: a-z supported
+  - **Spaces**: preserved in the message
+  - **Other characters**: not supported in this version
+
+### Rotation Mechanism
+
+  - **Simple rotation**: shifts one position to the right
+  - **Cascade rotation**: the second rotor turns after 26 rotations of the first
+  - **Rotor state**: modified during Enigma encryption
 
 ### Performance
-- **Complexité temporelle** : O(n×m) où n = longueur du message, m = taille de l'alphabet
-- **Complexité spatiale** : O(m) pour les rotors
+
+  - **Time complexity**: O(n×m) where n = message length, m = alphabet size
+  - **Space complexity**: O(m) for the rotors
+
+-----
 
 ## ⚠️ Limitations
 
-### Caractères Supportés
-- Uniquement les lettres minuscules (a-z)
-- Les accents et caractères spéciaux ne sont pas gérés
-- La casse n'est pas préservée
+### Supported Characters
 
-### Sécurité
-- Les rotors sont générés avec `random()` (non cryptographiquement sûr)
-- Pas de validation des entrées utilisateur
-- Configuration des rotors visible en clair
+  - Only lowercase letters (a-z)
+  - Accents and special characters are not handled
+  - Case is not preserved
 
-### Fonctionnalités Manquantes
-- Pas de plugboard (tableau de connexions)
-- Un seul réflecteur implicite
-- Pas de configuration de position initiale des rotors
+### Security
 
-## 🤝 Contribuer
+  - Rotors are generated with `random()` (not cryptographically secure)
+  - No user input validation
+  - Rotor configuration is visible in plain text
 
-1. **Fork** le projet
-2. **Créer une branche** feature (`git checkout -b feature/amelioration`)
-3. **Commit** les changements (`git commit -m 'Ajout fonctionnalité'`)
-4. **Push** sur la branche (`git push origin feature/amelioration`)
-5. **Ouvrir une Pull Request**
+### Missing Features
 
-### Domaines de Contribution
-- Amélioration de l'interface utilisateur
-- Optimisation des performances
-- Ajout de tests unitaires
-- Documentation et exemples
-- Support de nouveaux caractères
-- Fonctionnalités historiquement exactes
+  - No plugboard
+  - A single implicit reflector
+  - No initial rotor position configuration
 
-## 📝 Licence
+-----
 
-Ce projet est développé à des fins éducatives pour comprendre les principes de cryptographie historique.
+## 🤝 Contributing
 
-## 👨‍💻 Auteur
+1.  **Fork** the project
+2.  **Create a feature branch** (`git checkout -b feature/improvement`)
+3.  **Commit** your changes (`git commit -m 'Add new feature'`)
+4.  **Push** to the branch (`git push origin feature/improvement`)
+5.  **Open a Pull Request**
 
-Projet développé pour l'apprentissage de la cryptographie et de l'informatique historique.
+### Areas for Contribution
 
----
+  - User interface improvements
+  - Performance optimization
+  - Adding unit tests
+  - Documentation and examples
+  - Supporting new characters
+  - Historically accurate features
 
-**Note Pédagogique** : Ce simulateur est une simplification de la machine Enigma historique, conçu pour illustrer les concepts de base du chiffrement par substitution avec rotation mécanique.
+-----
+
+## 📝 License
+
+This project is developed for educational purposes to understand the principles of historical cryptography.
+
+-----
+
+## 👨‍💻 Author
+
+Project developed for learning about cryptography and historical computing.
+
+-----
+
+**Educational Note**: This simulator is a simplification of the historical Enigma machine, designed to illustrate the basic concepts of substitution cipher with a mechanical rotation.
